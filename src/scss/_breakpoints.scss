@@ -1,0 +1,14 @@
+$breakpoints: (
+  viewport-4 : 0px, 
+  viewport-7 : 768px, 
+  viewport-9: 992px,
+  viewport-12: 1200px
+);
+
+@mixin media($keys...){
+  @each $key in $keys { 
+    @media (min-width: map-get($breakpoints, $key)){
+      @content
+    } 
+  }
+}
