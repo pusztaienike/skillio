@@ -1,18 +1,40 @@
 <template>
-    <div class="home">
-        <img alt="Vue logo" src="../assets/logo.png" />
-        <HelloWorld msg="Welcome to Your Vue.js App" />
-    </div>
+    <section>
+        <div id="home" v-for="(item, index) in items" :key="index">
+            <card :item="item"></card>
+        </div>
+    </section>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue';
+import axios from 'axios';
+import Card from '../components/Card';
 
 export default {
-    name: 'home',
+    name: 'Home',
+    data() {
+        return {
+            items: [],
+            errors: []
+        };
+    },
+    created() {
+        axios
+            .get(`http://localhost:3000/items`)
+            .then(response => {
+                this.items = response.data;
+            })
+            .catch(e => {
+                this.errors.push(e);
+            });
+    },
     components: {
-        HelloWorld
+        card: Card
     }
 };
 </script>
+
+<style>
+#home {
+}
+</style>
