@@ -2,5 +2,15 @@
 @import './breakpoints';
 
 a {
-  text-decoration: none !important;
+    text-decoration: none !important;
+    color: inherit;
+}
+
+* {
+    box-sizing: border-box;
+    font-family: 'Arial';
+}
+
+h4 {
+    margin: 0;
 }

@@ -1,16 +1,16 @@
 <template>
-    <div class="card">
-        <div>{{ item.title }}</div>
-        <div><img :src="item.thumbnail" /></div>
+    <a :href="item.url" class="card">
+        <h4>{{ item.title }}</h4>
+        <div class="img-wrapper"><img :src="item.thumbnail" /></div>
         <div>{{ item.description }}</div>
-        <div
-            class="label-container"
-            v-for="(label, index) in item.labels"
-            :key="index"
-        >
-            <label-button :label="label"></label-button>
+        <div class="label-container">
+            <label-button
+                :label="label"
+                v-for="(label, index) in item.labels"
+                :key="index"
+            ></label-button>
         </div>
-    </div>
+    </a>
 </template>
 
 <script>
@@ -32,9 +32,37 @@ export default {
 
 <style scoped lang="scss">
 .card {
-    img {
-        width: 50%;
-        height: 50%;
+    background-color: $primary;
+    padding: 1rem;
+    border: 1px solid $border-color;
+
+    > div,
+    h4 {
+        padding: 0.5rem;
+        font-weight: 500;
+    }
+
+    .label-container {
+        display: grid;
+        grid-gap: 1rem;
+        grid-template-columns: repeat(2, 1fr);
+        justify-items: center;
+        align-items: center;
+    }
+
+    .img-wrapper {
+        justify-content: center;
+        display: flex;
+
+        img {
+            width: 50%;
+            height: 50%;
+        }
+    }
+
+    &:hover {
+        background-color: $hovered-color;
+        cursor: pointer;
     }
 }
 </style>
